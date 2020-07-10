@@ -2,8 +2,8 @@
 @section('content')
 <div id="content">
   <div id="content-header">
-    <div id="breadcrumb"> <a href="{{ url('/admin/dashboard') }}" class="tip-bottom"><i class="icon-home"></i> Trang Chủ</a> <a href="{{ url('/admin/view-category') }}" class="current">Danh Mục</a> <a href="#" class="current">Thêm Danh Mục</a> </div>
-    <h1>Thêm Danh Mục</h1>
+    <div id="breadcrumb"> <a href="{{ url('/admin/dashboard') }}" class="tip-bottom"><i class="icon-home"></i> Trang Chủ</a> <a href="{{ url('/admin/view-product') }}" class="current">Sản Phẩm</a> <a href="#" class="current">Thêm Sản Phẩm</a> </div>
+    <h1>Thêm Sản Phẩm</h1>
     @if(Session::has('flash_message_error'))
     <div class="alert alert-danger alert-block">
         <button type="button" class="close" data-dismiss="alert">×</button>	
@@ -23,26 +23,35 @@
         <div class="span12">
           <div class="widget-box">
             <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
-              <h5>THÊM DANH MỤC</h5>
+              <h5>THÊM SẢN PHẨM</h5>
             </div>
             <div class="widget-content nopadding">  
-              <form class="form-horizontal" method="POST" action="{{ url('admin/add-category') }}" name="add-category" id="add-category" novalidate="novalidate">{{csrf_field() }}
+              <form enctype="multipart/form-data" class="form-horizontal" method="POST" action="{{ url('admin/add-product') }}" name="add-product" id="add-product" novalidate="novalidate">{{csrf_field() }}
                 <div class="control-group">
-                  <label class="control-label">Tên Danh Mục</label>
+                  <label class="control-label">Danh Mục Sản Phẩm</label>
                   <div class="controls">
-                    <input type="text" name="category_name" id="category_name" />
+                    <select name="category_id" id="category_id" style="width: 220px">
+                      <?php echo $categories_dropdown; ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Tên Sản Phẩm</label>
+                  <div class="controls">
+                    <input type="text" name="product_name" id="product_name" />
                     <span id="chkPwd"></span>
                   </div>
                 </div>
                 <div class="control-group">
-                  <label class="control-label">Danh Mục Cha</label>
+                  <label class="control-label">Mã Sản Phẩm</label>
                   <div class="controls">
-                    <select name="parent_id" style="width: 220px">
-                      <option value="0">Chọn Danh Mục</option>
-                      @foreach($parent_cate as $val)
-                        <option value="{{ $val->id }}">{{ $val->name }}</option>
-                      @endforeach
-                    </select>
+                    <input type="text" name="product_code" id="product_code" />
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Màu Sắc</label>
+                  <div class="controls">
+                    <input type="text" name="product_color" id="product_color" />
                   </div>
                 </div>
                 <div class="control-group">
@@ -52,9 +61,15 @@
                   </div>
                 </div>
                 <div class="control-group">
-                  <label class="control-label">URL</label>
+                  <label class="control-label">Gía</label>
                   <div class="controls">
-                    <input type="text" name="url" id="url" />
+                    <input type="text" name="price" id="price" />
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Hình Ảnh</label>
+                  <div class="controls">
+                    <input type="file" name="image" id="image" />
                   </div>
                 </div>
                 <div class="form-actions">

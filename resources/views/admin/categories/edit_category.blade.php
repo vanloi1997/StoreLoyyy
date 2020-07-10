@@ -28,16 +28,31 @@
             <div class="widget-content nopadding">  
               <form class="form-horizontal" method="POST" action="{{ url('admin/edit-category/'.$cateDetails->id) }}" name="edit-category" id="edit-category" novalidate="novalidate">{{csrf_field() }}
                 <div class="control-group">
-                  <label class="control-label">Category Name</label>
+                  <label class="control-label">Tên Danh Mục</label>
                   <div class="controls">
                     <input type="text" name="category_name" id="category_name" value="{{ $cateDetails->name }}" />
                     <span id="chkPwd"></span>
                   </div>
                 </div>
                 <div class="control-group">
-                  <label class="control-label">Description</label>
+                  <label class="control-label">Danh Mục Cha</label>
                   <div class="controls">
-                    <input type="text" name="description" id="description" value="{{ $cateDetails->description }}"/>
+                  <select name="parent_id" style="width: 220px">
+                      <option value="0">Chọn Danh Mục</option>
+                      @foreach($parent_cate as $val)
+                        <option value="{{ $val->id }}" 
+                          @if($val->id == $cateDetails->parent_id) 
+                            selected 
+                          @endif >{{ $val->name }}
+                        </option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Mô Tả</label>
+                  <div class="controls">
+                    <textarea name="description" id="description">{{ $cateDetails->description }} </textarea>
                   </div>
                 </div>
                 <div class="control-group">

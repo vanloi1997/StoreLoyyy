@@ -30,6 +30,11 @@ Route::group(['middleware' => ['auth']], function(){
     Route::match(['get','post'], 'admin/edit-category/{id}', 'CategoryController@editCategory');
     Route::match(['get','post'], 'admin/delete-category/{id}', 'CategoryController@deleteCategory');
     Route::get('admin/view-category', 'CategoryController@viewCategory');
+    //Product Routes
+    Route::match(['get','post'], 'admin/add-product', 'ProductsController@addProduct');
+    Route::match(['get','post'], 'admin/edit-product/{id}', 'ProductsController@editProduct');
+    Route::get('admin/view-product', 'ProductsController@viewProduct');
+    Route::get('admin/delete-product-image/{id}' ,'ProductsController@deleteImageProduct');
 });
 Route::get('logout','AdminController@logout');
 
