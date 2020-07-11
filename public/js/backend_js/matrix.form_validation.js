@@ -223,10 +223,36 @@ $(document).ready(function(){
 			$(element).parents('.control-group').addClass('success');
 		}
 	});
-	$(".delcate").click(function(){
-		if(confirm('Bạn Có Chắc Xóa Danh Mục Này Không?')){
-			return true;
-		}
-		return false;
-	})
+	// $("#delcate").click(function(){
+	// 	if(confirm('Bạn Có Chắc Xóa Danh Mục Này Không?')){
+	// 		return true;
+	// 	}
+	// 	return false;
+	// });
+	// $("#delproduct").click(function(){
+	// 	if(confirm('Bạn Có Chắc Xóa Sản Phẩm Này Không?')){
+	// 		return true;
+	// 	}
+	// 	return false;
+	// });
+	$(".deleteRecord").click(function(){
+		var id = $(this).attr('rel');
+		var deleteFunction = $(this).attr('rel1');
+		swal({
+			title: "Bạn Có Chắc Chắn Không?",
+			text: "Bạn Sẽ Không Thể Phục Hồi Bản Ghi Này!!",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonClass: "btn-danger",
+			confirmButtonText: "Có, Xóa Nó",
+			closeOnConfirm: false
+		},
+		function(){
+			swal({
+				title: "Xóa Sản Phẩm Thành Công!",
+				type: "success",
+			})
+			window.location.href=deleteFunction+"/"+id;
+		});
+	});
 });

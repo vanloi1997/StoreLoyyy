@@ -51,7 +51,7 @@
                         <td style = "text-align: center">{{ $categories->url }}</td>
                         <td style = "text-align: center">
                             <a href="{{ url('admin/edit-category/'.$categories->id) }}" class="btn btn-primary btn-mini">Edit</a>
-                            <a href="{{ url('admin/delete-category/'.$categories->id) }}"  class="delcate btn btn-danger btn-mini">Delete</a>
+                            <a rel="{{ $categories->id }}" rel1="delete-category" href="javascript:" class="btn btn-danger btn-mini deleteRecord">Delete</a>
                         </td>
                     </tr>  
                     @endforeach

@@ -115,4 +115,8 @@ class ProductsController extends Controller
         Product::where(['id' => $id])->update(['image' => '']);
         return redirect()->back()->with('flash_message_success','Hình Ảnh Sản Phẩm Xóa Thành Công');
     }
+    public function deleteProduct($id){
+        Product::where(['id' => $id])->delete();
+        return redirect()->back();
+    }
 }
