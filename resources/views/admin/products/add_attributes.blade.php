@@ -27,6 +27,7 @@
             </div>
             <div class="widget-content nopadding">  
             <form  class="form-horizontal" method="POST" action="{{ url('admin/add-attributes/'.$productDetails->id) }}" name="add-attributes" id="add-attributes" novalidate="novalidate">{{csrf_field() }}
+                <input type="hidden" name="product_id" value="{{ $productDetails->id }}">
                 <div class="control-group">
                   <label class="control-label">Tên Sản Phẩm: </label>
                   <label class="control-label"  style="text-align: center"><strong>{{ $productDetails->product_name }}</strong></label>
@@ -38,6 +39,18 @@
                 <div class="control-group">
                   <label class="control-label">Màu Sắc: </label>
                   <label class="control-label"  style="text-align: center"><strong>{{ $productDetails->product_color }}</strong></label>
+                </div>
+                <div class="control-group">
+                  <label class="control-label"></label>
+                  <div class="field_wrapper">
+                      <div>
+                          <input type="text" name="sku[]" id="sku" placeholder="Sku" style="width: 120px"/>
+                          <input type="text" name="size[]" id="size" placeholder="Size" style="width: 120px"/>
+                          <input type="text" name="price[]" id="price" placeholder="Price" style="width: 120px"/>
+                          <input type="text" name="stock[]" id="stock" placeholder="Stock" style="width: 120px"/>
+                          <a href="javascript:void(0);" class="add_button" title="Add field"><i class="fa fa-plus fa-fw"></i></a>
+                      </div>
+                  </div>
                 </div>
                 <div class="form-actions">
                   <input type="submit" value="Thêm Thuộc Tính" class="btn btn-success">
