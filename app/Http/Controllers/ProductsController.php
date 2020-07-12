@@ -119,4 +119,8 @@ class ProductsController extends Controller
         Product::where(['id' => $id])->delete();
         return redirect()->back();
     }
+    public function addAttributes(Request $request, $id){
+        $productDetails = Product::where(['id' => $id])->first();
+        return view('admin.products.add_attributes')->with(compact('productDetails'));
+    }
 }
