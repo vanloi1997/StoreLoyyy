@@ -26,7 +26,7 @@
               <h5>THÊM THUỘC TÍNH SẢN PHẨM</h5>
             </div>
             <div class="widget-content nopadding">  
-            <form  class="form-horizontal" method="POST" action="{{ url('admin/add-attributes/'.$productDetails->id) }}" name="add-attributes" id="add-attributes" novalidate="novalidate">{{csrf_field() }}
+            <form  class="form-horizontal" method="POST" action="{{ url('admin/add-attributes/'.$productDetails->id) }}" name="add-attributes" id="add-attributes">{{csrf_field() }}
                 <input type="hidden" name="product_id" value="{{ $productDetails->id }}">
                 <div class="control-group">
                   <label class="control-label">Tên Sản Phẩm: </label>
@@ -44,10 +44,10 @@
                   <label class="control-label"></label>
                   <div class="field_wrapper">
                       <div>
-                          <input type="text" name="sku[]" id="sku" placeholder="Sku" style="width: 120px"/>
-                          <input type="text" name="size[]" id="size" placeholder="Size" style="width: 120px"/>
-                          <input type="text" name="price[]" id="price" placeholder="Price" style="width: 120px"/>
-                          <input type="text" name="stock[]" id="stock" placeholder="Stock" style="width: 120px"/>
+                          <input required type="text" name="sku[]" id="sku" placeholder="Sku" style="width: 120px"/>
+                          <input required type="text" name="size[]" id="size" placeholder="Size" style="width: 120px"/>
+                          <input required type="text" name="price[]" id="price" placeholder="Price" style="width: 120px"/>
+                          <input required type="text" name="stock[]" id="stock" placeholder="Stock" style="width: 120px"/>
                           <a href="javascript:void(0);" class="add_button" title="Add field"><i class="fa fa-plus fa-fw"></i></a>
                       </div>
                   </div>
@@ -57,6 +57,43 @@
                 </div>
               </form>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+            <h5>Danh Sách Thuộc Tính Sản Phẩm</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table class="table table-bordered data-table">
+                <thead>
+                    <tr>
+                        <th>Attributes ID</th>
+                        <th>Sku</th>
+                        <th>Size</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($productDetails['attributes'] as $key => $val)
+                    <tr>
+                        <td style = "text-align: center">{{ $key + 1 }}</td>
+                        <td style = "text-align: center">{{ $val->sku }}</td>
+                        <td style = "text-align: center">{{ $val->size }}</td>
+                        <td style = "text-align: center">{{ $val->price }}</td>
+                        <td style = "text-align: center">{{ $val->stock }}</td>
+                        <td style = "text-align: center">
+                            <a rel="{{ $val->id }}" rel1="delete-attributes" href="javascript:" class="btn btn-danger btn-mini deleteRecord">Delete</a>
+                        </td>
+                    </tr>  
+                    @endforeach
+                </tbody>
+            </table>    
           </div>
         </div>
       </div>

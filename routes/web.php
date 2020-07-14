@@ -38,6 +38,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('admin/delete-product/{id}', 'ProductsController@deleteProduct');
     //Product Attributes Routes
     Route::match(['get','post'], 'admin/add-attributes/{id}', 'ProductsController@addAttributes');
+    Route::get('admin/delete-attributes/{id}', 'ProductsController@deleteAttributes');
 });
 Route::get('logout','AdminController@logout');
 

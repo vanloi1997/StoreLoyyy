@@ -118,10 +118,11 @@ class ProductsController extends Controller
     }
     public function deleteProduct($id){
         Product::where(['id' => $id])->delete();
+        ProductsAttribute::where(['product_id'=>$id])->delete();
         return redirect()->back();
     }
     public function addAttributes(Request $request, $id){
-        $productDetails = Product::where(['id' => $id])->first();
+        $productDetails = Product::with('attributes')->where(['id' => $id])->first();
         if($request->isMethod('post')){
             $data = $request->all();
             foreach($data['sku'] as $key => $val){
@@ -138,5 +139,9 @@ class ProductsController extends Controller
             return redirect('/admin/add-attributes/'.$productDetails->id)->with('flash_message_success','Thêm Thuộc Tính Thành Công');
         }
         return view('admin.products.add_attributes')->with(compact('productDetails'));
+    }
+    public function deleteAttributes($id){
+        ProductsAttribute::where(['id' => $id])->delete();
+        return redirect()->back();
     }
 }

@@ -243,16 +243,20 @@ $(document).ready(function(){
 			text: "Bạn Sẽ Không Thể Phục Hồi Bản Ghi Này!!",
 			type: "warning",
 			showCancelButton: true,
-			confirmButtonClass: "btn-danger",
-			confirmButtonText: "Có, Xóa Nó",
-			closeOnConfirm: false
+			confirmButtonText: "Có, Xóa Nó!",
+			cancelButtonText: "Không!",
+			cancelButtonClass: "btn btn-success",
+			confirmButtonClass: "btn btn-danger",
+			closeOnConfirm: false,
+			buttonsStyling: false,
+			reverseButtons: true
 		},
 		function(){
 			swal({
-				title: "Xóa Sản Phẩm Thành Công!",
+				title: "Xóa Thành Công!",
 				type: "success",
 			})
-			window.location.href=deleteFunction+"/"+id;
+			window.location.href= "/admin/"+deleteFunction+"/"+id;
 		});
 	});
 
